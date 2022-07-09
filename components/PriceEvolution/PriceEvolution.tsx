@@ -39,9 +39,9 @@ const PriceEvolution = ({ data }: ChartProps) => {
         dataLabels: {
             enabled: false
         },
-        stroke: {
-            curve: "smooth",
-        },
+        // stroke: {
+        //     : "smooth",
+        // },
         legend: {
             tooltipHoverFormatter: (val: any, opts: any) => (val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + '')
         },
