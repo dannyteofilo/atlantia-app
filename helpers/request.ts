@@ -11,3 +11,9 @@ export const getShareChart = async () => {
   const resp: any = await fetch(url);
   return await resp.json();
 };
+
+export const getPriceEvolution = async () => {
+    const url = `${apiUrl}/price-evolution-chart/`;
+    const resp: any = await fetch(url);
+    return await resp.json();
+  };

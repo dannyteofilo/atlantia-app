@@ -8,7 +8,6 @@ type TableProps = {
 }
 
 const TableComparative = ({ data, tableValues }: TableProps) => {
-    console.log('data recived: ', data);
     return (
         <>
             <table className='table-comparative'>

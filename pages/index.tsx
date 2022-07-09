@@ -4,15 +4,18 @@ import { useEffect, useState } from 'react'
 import Header from '../components/Header/Header'
 import TableComparative from '../components/Table/TableComparative'
 import { TableValues } from '../constants/constants'
-import { getProducts, getShareChart } from '../helpers/request'
+import { getProducts, getShareChart, getPriceEvolution } from '../helpers/request'
 import { productsInterface } from '../interfaces/Products'
 import { ShareInterface } from '../interfaces/Share'
 import Label from '../components/Label/Label'
 import ProductChart from '../components/ProductChart/ProductChart'
+import PriceEvolution from '../components/PriceEvolution/PriceEvolution'
+import { EvolutionInterface } from '../interfaces/Evolution'
 
 const Home: NextPage = () => {
   const [data, setData] = useState<Array<productsInterface>>([])
   const [share, setShare] = useState<Array<ShareInterface>>([])
+  const [evolution, setEvolution] = useState<Array<EvolutionInterface>>([])
   useEffect(() => {
     getProducts().then((resp) => {
       setData(resp)
@@ -20,9 +23,10 @@ const Home: NextPage = () => {
     getShareChart().then((resp) => {
       setShare(resp)
     })
+    getPriceEvolution().then((resp) => {
+      setEvolution(resp)
+    })
   }, []);
-
-  console.log('share: ', share);
 
   return (
     <div className='container'>
@@ -36,10 +40,16 @@ const Home: NextPage = () => {
       <main className='main'>
         <div className='charts'>
           <div>
-
+            <Label title='Price Evolution'></Label>
+            {
+              evolution.length !== 0 ?
+                <PriceEvolution data={evolution} />
+                :
+                <span>Loading</span>
+            }
           </div>
           <div>
-          <Label title='Presence Share by Product'></Label>
+            <Label title='Presence Share by Product'></Label>
             {
               share.length !== 0 ?
                 <ProductChart data={share} />
