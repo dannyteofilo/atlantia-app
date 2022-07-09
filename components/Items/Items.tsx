@@ -6,8 +6,12 @@ export const Items = ({ id, sku, name, persistence, averagePosition, averagePric
     return (
         <tr className={id % 2 === 0 ? 'item gray' : 'item'}>
             <td className='name'>
-                <Image src={productImage} alt="" width={121} height={131} />
-                <span>{name}</span>
+                <div className='image'>
+                    <Image src={productImage} alt="" width={121} height={131} />
+                </div>
+                <div className='text'>
+                    <span>{name}</span>
+                </div>
             </td>
             <td>{sku}</td>
             <td className={id % 2 === 0 ? 'green' : 'pink'} style={{ color: id % 2 === 0 ? '#D6215B' : '#23B794' }}>{persistence}%</td>
