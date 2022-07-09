@@ -5,3 +5,9 @@ export const getProducts = async () => {
   const resp: any = await fetch(url);
   return await resp.json();
 };
+
+export const getShareChart = async () => {
+  const url = `${apiUrl}/presence-share-chart/`;
+  const resp: any = await fetch(url);
+  return await resp.json();
+};

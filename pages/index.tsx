@@ -4,17 +4,25 @@ import { useEffect, useState } from 'react'
 import Header from '../components/Header/Header'
 import TableComparative from '../components/Table/TableComparative'
 import { TableValues } from '../constants/constants'
-import { getProducts } from '../helpers/request'
+import { getProducts, getShareChart } from '../helpers/request'
 import { productsInterface } from '../interfaces/Products'
+import { ShareInterface } from '../interfaces/Share'
 import Label from '../components/Label/Label'
+import ProductChart from '../components/ProductChart/ProductChart'
 
 const Home: NextPage = () => {
   const [data, setData] = useState<Array<productsInterface>>([])
+  const [share, setShare] = useState<Array<ShareInterface>>([])
   useEffect(() => {
     getProducts().then((resp) => {
       setData(resp)
     })
-  }, [])
+    getShareChart().then((resp) => {
+      setShare(resp)
+    })
+  }, []);
+
+  console.log('share: ', share);
 
   return (
     <div className='container'>
@@ -26,6 +34,10 @@ const Home: NextPage = () => {
 
       <Header />
       <main className='main'>
+        {
+          share &&
+          <ProductChart data={share} />
+        }
         <Label title='Comparative Analysis'></Label>
         <TableComparative data={data} tableValues={TableValues} />
       </main>
