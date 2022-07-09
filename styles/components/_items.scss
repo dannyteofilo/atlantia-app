@@ -1,0 +1,33 @@
+.item {
+    padding: 15px 0px 15px 15px;
+    height: 161px;
+    border: 1px solid #E9E9E9;
+    background: #FFFFFF;
+
+    >.name {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 14px;
+    }
+
+    >td {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 160%;
+        color: #565657;
+        text-align: center;
+    }
+}
+
+.gray {
+    background-color: #d3d0d0;
+}
+
+.gray {
+    color: #23B794;
+}
+
+.pink {
+    color: #D6215B;
+}
