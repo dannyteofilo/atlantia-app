@@ -1,8 +1,21 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import Header from '../components/Header/Header'
+import TableComparative from '../components/Table/TableComparative'
+import { TableValues } from '../constants/constants'
+import { getProducts } from '../helpers/request'
+import { productsInterface } from '../interfaces/Products'
+import Label from '../components/Label/Label'
 
 const Home: NextPage = () => {
+  const [data, setData] = useState<Array<productsInterface>>([])
+  useEffect(() => {
+    getProducts().then((resp) => {
+      setData(resp)
+    })
+  }, [])
+
   return (
     <div className='container'>
       <Head>
@@ -11,9 +24,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header />
       <main className='main'>
-       <Header/>
-       </main>
+        <Label title='Comparative Analysis'></Label>
+        <TableComparative data={data} tableValues={TableValues} />
+      </main>
     </div>
   )
 }
