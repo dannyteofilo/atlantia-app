@@ -34,10 +34,20 @@ const Home: NextPage = () => {
 
       <Header />
       <main className='main'>
-        {
-          share &&
-          <ProductChart data={share} />
-        }
+        <div className='charts'>
+          <div>
+
+          </div>
+          <div>
+          <Label title='Presence Share by Product'></Label>
+            {
+              share.length !== 0 ?
+                <ProductChart data={share} />
+                :
+                <span>Loading</span>
+            }
+          </div>
+        </div>
         <Label title='Comparative Analysis'></Label>
         <TableComparative data={data} tableValues={TableValues} />
       </main>

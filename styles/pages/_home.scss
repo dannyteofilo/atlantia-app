@@ -9,5 +9,12 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 0 30px;
+
+    .charts{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
   
